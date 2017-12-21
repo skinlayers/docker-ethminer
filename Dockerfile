@@ -6,7 +6,8 @@ ENV GITHUB_URL https://github.com/ethereum-mining/ethminer/releases/download/v${
 ENV SHA256 be060bd78f9f0386b7a52f97d0c8b0bdc49941b2865e8ff77a0169bfd0b0b8af
 
 WORKDIR /usr/local/bin
-RUN apt-get update && apt-get -y install --no-install-recommends curl ca-certificates && \
+RUN adduser --system --home /data --group ethminer && \
+    apt-get update && apt-get -y install --no-install-recommends curl ca-certificates && \
     curl -L -o "$ARCHIVE_NAME" "$GITHUB_URL" && \
     echo "$SHA256  $ARCHIVE_NAME" > "${ARCHIVE_NAME}_sha256.txt" && \
     sha256sum -c "${ARCHIVE_NAME}_sha256.txt" && \
@@ -24,6 +25,8 @@ ENV GPU_SINGLE_ALLOC_PERCENT 100
 COPY ./docker-entrypoint.sh /
 
 RUN chmod 0755 /docker-entrypoint.sh
+
+USER ethminer
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/usr/local/bin/ethminer"]
