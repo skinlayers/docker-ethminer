@@ -1,10 +1,10 @@
 FROM nvidia/cuda:9.0-base-ubuntu16.04
 LABEL maintainer="skinlayers@gmail.com"
 
-ARG VERSION=0.13.0
+ARG VERSION=0.15.0rc2
 ARG ARCHIVE_NAME=ethminer-$VERSION-Linux.tar.gz
 ARG ARCHIVE_URL=https://github.com/ethereum-mining/ethminer/releases/download/v${VERSION}/$ARCHIVE_NAME
-ARG ARCHIVE_SHA256=34d4d7ebc210bbe84a4acab1cb0ec2abbb431911ddc5a6c28225530f6d1ba7e0
+ARG ARCHIVE_SHA256=b4b46f3aea760d6a9190a941fa4f7c5985431a0ee366f2ccdf2deb2fa6493fdc
 ARG ARCHIVE_SHA256_FILE=ethminer-$VERSION-Linux-sha256.txt
 ARG BUILD_DEPENDENCIES=" \
     curl \
